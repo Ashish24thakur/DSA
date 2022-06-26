@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.Scanner;
+
 class LinkedList3{
     int data;
     LinkedList3 next;
@@ -39,13 +41,28 @@ public class ReverseLinkedList {
     }
     public static void reverse(LinkedList3 node)
     {
-        LinkedList3 current = node;
-        while (current.next != null)
+        LinkedList3 current = null;
+        LinkedList3 previous = null;
+        LinkedList3 pointer = head;
+        while (pointer != null)
         {
-            LinkedList3 temp = current;
-            temp.next = null;
-            temp.next = current;
-//            current.next = null;
+            current = pointer;
+            pointer = pointer.next;
+            current.next = previous;
+            previous = current;
+            head = current;
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for (int i = 0; i < n; i++) {
+            insert(sc.nextInt());
+        }
+        display(head);
+        System.out.println("After reversing.......................................");
+        reverse(head);
+        display(head);
     }
 }
